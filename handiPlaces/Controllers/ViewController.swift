@@ -32,6 +32,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     let urlDeBase = "https://data.iledefrance.fr/api/records/1.0/search/?dataset=cartographie_des_etablissements_tourisme_handicap"
     let urlOptionDepartement = "&q=&facet=departement"
+    let urlOptionNbRows = "&rows="
     
     override func viewDidLoad() {
         super.viewDidLoad()
