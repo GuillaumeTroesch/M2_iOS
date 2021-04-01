@@ -60,11 +60,11 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                 if let data = data {
                     let dataString = String(data: data, encoding: .utf8)
                     print(dataString!)
-                    /*
+                    
                     let dataDecode = JSONDecoder()
                     do {
                         let donnee = try dataDecode.decode(Donnee.self, from: data)
-                        print(donnee.name)
+                        //print(donnee.name)
                         //print(donnee.main.temp)
                         //print(donnee.weather[0].id)
                         /*DispatchQueue.main.async {
@@ -74,7 +74,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                         }*/
                     } catch {
                         print(error)
-                    }*/
+                    }
                 } else {
                     print("Aucune donnée retournée")
                 }
