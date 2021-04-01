@@ -62,6 +62,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                         let donnee = try dataDecode.decode(Donnee.self, from: data)
                         
                         DispatchQueue.main.async {
+                            self.nbTotalLieux = donnee.nhits
                             for facet in donnee.facet_groups[0].facets
                             {
                                 self.departements.append(facet.name)
