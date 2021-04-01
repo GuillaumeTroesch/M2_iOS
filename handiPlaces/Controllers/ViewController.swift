@@ -12,8 +12,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     //PickerView Initialisation
     @IBOutlet weak var pickerDepartement: UIPickerView!
     
-//    var departements = ["77 Seine-et-Marne", "78 Yvelines", "91 Essonne", "92 Hauts-de-Seine", "93 Seine-Saint-Denis", "94 Val-De-Marne", "95 Val d'Oise", "75 Paris"]
-    var departements = ["empty"]
+    var departements = [] as [String]
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -25,12 +24,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         return departements[row]
     }
     //Fin PickerView Initialisation
-    
-
-//    @IBOutlet weak var departement: UITableView!
-//    @IBOutlet weak var handicap: UITableView?
-//    @IBOutlet weak var villeField: UIButton!
-    
+       
     
     
     
@@ -59,26 +53,18 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             } else {
                 print("OK")
                 if let data = data {
-                    let dataString = String(data: data, encoding: .utf8)
-//                    print(dataString!)
-                    
                     let dataDecode = JSONDecoder()
                     do {
                         let donnee = try dataDecode.decode(Donnee.self, from: data)
                         print(donnee.facet_groups[0].facets)
                         
-//                        self.departements=[donnee.facet_groups[0].facets[0].name]
-                        
-                        
-                        //TODO pas suffisant, les donnees ne sont a jour que quand on scroll
                         
                         DispatchQueue.main.async {
-                         self.departements=[donnee.facet_groups[0].facets[0].name]
+                            for facet in donnee.facet_groups[0].facets
+                            {
+                                self.departements.append(facet.name)
+                            }
                             self.pickerDepartement.delegate = self
-                         
-//                            self.tempLabel.text = String(format: "%.1f", donnee.main.temp)
-//                            self.villeLabel.text = donnee.name
-//                            self.imageConditionMeteo.image = UIImage(systemName: self.nomImage(id: donnee.weather[0].id))
                         }
                     } catch {
                         print(error)
