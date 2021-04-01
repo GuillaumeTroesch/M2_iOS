@@ -31,8 +31,10 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     //Fin PickerView Initialisation
     
     let urlDeBase = "https://data.iledefrance.fr/api/records/1.0/search/?dataset=cartographie_des_etablissements_tourisme_handicap"
-    let urlOptionDepartement = "&q=&facet=departement"
+    let urlOption = "&q="
+    let urlOptionDepartement = "&facet=departement"
     let urlOptionNbRows = "&rows="
+    let urlOptionRecordid = "&recordid="
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +45,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     func connectionAPI() {
-        let texteURL = "\(urlDeBase)\(urlOptionDepartement)"
+        let texteURL = "\(urlDeBase)\(urlOption)\(urlOptionDepartement)"
         let urlEncodee = texteURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         guard urlEncodee != nil else { debugPrint("Problème d'encodage de l'URL : \(texteURL)"); return }
         let url = URL(string: urlEncodee!)
