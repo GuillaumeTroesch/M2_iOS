@@ -28,17 +28,38 @@ class ViewController: UIViewController {
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    //PickerView Initialisation
+    @IBOutlet weak var pickerDepartement: UIPickerView!
+    var departements = ["77 Seine-et-Marne", "78 Yvelines", "91 Essonne", "92 Hauts-de-Seine", "93 Seine-Saint-Denis", "94 Val-De-Marne", "95 Val d'Oise", "75 Paris"]
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return departements.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return departements[row]
+    }
+    //Fin PickerView Initialisation
+    
 
-    @IBOutlet weak var departement: UITableView!
-    @IBOutlet weak var handicap: UITableView?
-    @IBOutlet weak var villeField: UIButton!
+//    @IBOutlet weak var departement: UITableView!
+//    @IBOutlet weak var handicap: UITableView?
+//    @IBOutlet weak var villeField: UIButton!
+    
+    
+    
     
     var urlAPI = "https://data.iledefrance.fr/explore/dataset/cartographie_des_etablissements_tourisme_handicap/api/"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+//        view.backgroundColor = .red
+        
+        pickerDepartement.delegate = self
+        pickerDepartement.dataSource = self
         connectionAPI()
     }
     
