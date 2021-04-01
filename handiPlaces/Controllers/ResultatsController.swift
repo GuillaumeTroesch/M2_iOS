@@ -41,6 +41,17 @@ class ResultatsController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let Storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let DvC = Storyboard.instantiateViewController(withIdentifier: "placeController") as! PlaceController
+        tableView.deselectRow(at: indexPath, animated: true)
+
+//        DvC.imageCurrent = headlines[indexPath.row].image
+//        DvC.titleCurrent = headlines[indexPath.row].title
+//        DvC.desriptionCurrent = headlines[indexPath.row].text
+        
+        self.navigationController?.pushViewController(DvC, animated: true)
+    }
 
     /*
     // Override to support conditional editing of the table view.

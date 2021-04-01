@@ -17,6 +17,9 @@ class PlaceController: UIViewController {
     
     @IBAction func gotoWebSite() {
         //TODO passer le site
+        let vc = storyboard?.instantiateViewController(identifier: "websiteController") as! WebsiteController
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
     }
 
     /*

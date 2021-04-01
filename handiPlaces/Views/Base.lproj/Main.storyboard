@@ -72,9 +72,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="bSa-Ms-uKF" kind="show" id="vBb-Et-EiT"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -91,7 +88,7 @@
         <!--Lieu-->
         <scene sceneID="rnb-WY-3vi">
             <objects>
-                <viewController id="bSa-Ms-uKF" customClass="PlaceController" customModule="handiPlaces" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="placeController" id="bSa-Ms-uKF" customClass="PlaceController" customModule="handiPlaces" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gtx-Fb-H5S">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -106,7 +103,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Site web"/>
                                 <connections>
-                                    <segue destination="QYB-uZ-xV3" kind="show" id="yaO-U7-pSm"/>
+                                    <action selector="gotoWebSite" destination="bSa-Ms-uKF" eventType="touchUpInside" id="Efq-TI-4vD"/>
                                 </connections>
                             </button>
                         </subviews>
