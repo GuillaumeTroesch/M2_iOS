@@ -5,34 +5,15 @@
 //  Created by tp on 25/03/2021.
 //
 
-/*import UIKit
-
-class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        view.backgroundColor = .red
-    }
-
-
-}
- */
-
-//
-//  ViewController.swift
-//  API
-//
-//  Created by Ali ED-DBALI on 11/03/2021.
-//
-
 import UIKit
 
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     //PickerView Initialisation
     @IBOutlet weak var pickerDepartement: UIPickerView!
+    
     var departements = ["77 Seine-et-Marne", "78 Yvelines", "91 Essonne", "92 Hauts-de-Seine", "93 Seine-Saint-Denis", "94 Val-De-Marne", "95 Val d'Oise", "75 Paris"]
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -52,7 +33,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     
     
-    var urlAPI = "https://data.iledefrance.fr/explore/dataset/cartographie_des_etablissements_tourisme_handicap/api/"
+    //var urlAPI = "https://data.iledefrance.fr/explore/dataset/cartographie_des_etablissements_tourisme_handicap/api/"
+    var urlDeBase = "https://data.iledefrance.fr/api/records/1.0/search/?dataset=cartographie_des_etablissements_tourisme_handicap"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,7 +46,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     func connectionAPI() {
-        let texteURL = "\(urlAPI)"
+        let texteURL = "\(urlDeBase)&q=&facet=departement"
         let urlEncodee = texteURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         guard urlEncodee != nil else { debugPrint("Problème d'encodage de l'URL : \(texteURL)"); return }
         let url = URL(string: urlEncodee!)
@@ -74,28 +56,28 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             if error != nil {
                 print("Problème lors de la requête : \(error!)")
             } else {
-                /*
+                print("OK")
                 if let data = data {
-                    // let dataString = String(data: data, encoding: .utf8)
-                    // print(dataString!)
+                    let dataString = String(data: data, encoding: .utf8)
+                    print(dataString!)
+                    /*
                     let dataDecode = JSONDecoder()
                     do {
                         let donnee = try dataDecode.decode(Donnee.self, from: data)
                         print(donnee.name)
-                        print(donnee.main.temp)
-                        print(donnee.weather[0].id)
-                        DispatchQueue.main.async {
+                        //print(donnee.main.temp)
+                        //print(donnee.weather[0].id)
+                        /*DispatchQueue.main.async {
                             self.tempLabel.text = String(format: "%.1f", donnee.main.temp)
                             self.villeLabel.text = donnee.name
                             self.imageConditionMeteo.image = UIImage(systemName: self.nomImage(id: donnee.weather[0].id))
-                        }
+                        }*/
                     } catch {
                         print(error)
-                    }
+                    }*/
                 } else {
                     print("Aucune donnée retournée")
                 }
-                 */
             }
         }
         tache.resume()
