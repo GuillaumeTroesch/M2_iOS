@@ -9,23 +9,15 @@ import Foundation
 
 // Decodable est utilisé qd on a besoin de récupérer la donnée depuis un format extétieur (fichier JSON par exemple)
 
-/*struct Departement : Decodable {
-    var id : int
-    var 
-}*/
+struct Departement : Decodable {
+    var name : String
+}
 
-struct Main : Decodable {
-    var temp : Double
+struct FacetGroups : Decodable {
+    var name : String
+    var facets : [Departement]
 }
 
 struct Donnee : Decodable {
-    var name : String
-    var main : Main
-    var weather: [Info]
-}
-
-struct Info : Decodable {
-    var id : Int
-    var description : String
-    var icon : String
+    var facet_groups : [FacetGroups]
 }
