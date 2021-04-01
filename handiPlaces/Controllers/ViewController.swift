@@ -30,12 +30,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     //Fin PickerView Initialisation
     
-    let urlDeBase = "https://data.iledefrance.fr/api/records/1.0/search/?dataset=cartographie_des_etablissements_tourisme_handicap"
-    let urlOption = "&q="
-    let urlOptionDepartement = "&facet=departement"
-    let urlOptionNbRows = "&rows="
-    let urlOptionRecordid = "&recordid="
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -78,6 +72,17 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             }
         }
         tache.resume()
+    }
+    
+    func rechercher() {
+        let Storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let DvC = Storyboard.instantiateViewController(withIdentifier: "ResultatsController") as! ResultatsController
+
+        DvC.imageCurrent = headlines[indexPath.row].image
+        DvC.titleCurrent = headlines[indexPath.row].title
+        DvC.desriptionCurrent = headlines[indexPath.row].text
+        
+        self.navigationController?.pushViewController(DvC, animated: true)
     }
 
 }

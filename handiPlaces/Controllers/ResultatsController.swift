@@ -8,6 +8,10 @@
 import UIKit
 
 class ResultatsController: UITableViewController {
+    
+    var optionRows : Int = 0
+    var optionDepartement : String = ""
+    var optionHandicaps : [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
