@@ -11,16 +11,19 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     //PickerView Initialisation
     @IBOutlet weak var pickerDepartement: UIPickerView!
+    @IBOutlet weak var pickerHandicap: UIPickerView?
     
-//    var departements = ["77 Seine-et-Marne", "78 Yvelines", "91 Essonne", "92 Hauts-de-Seine", "93 Seine-Saint-Denis", "94 Val-De-Marne", "95 Val d'Oise", "75 Paris"]
-    var departements = ["empty"]
+    var departements = [] as [String]
+    var handicaps = ["Handicap mental", "Handicap visuel", "Handicap auditif", "Handicap moteur"]
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
+    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return departements.count
     }
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return departements[row]
     }
@@ -59,14 +62,14 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             } else {
                 print("OK")
                 if let data = data {
-                    let dataString = String(data: data, encoding: .utf8)
+//                    let dataString = String(data: data, encoding: .utf8)
 //                    print(dataString!)
                     
                     let dataDecode = JSONDecoder()
                     do {
                         let donnee = try dataDecode.decode(Donnee.self, from: data)
                         print(donnee.facet_groups[0].facets)
-                        
+                    
 //                        self.departements=[donnee.facet_groups[0].facets[0].name]
                         
                         
