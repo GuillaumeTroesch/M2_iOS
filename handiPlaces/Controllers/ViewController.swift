@@ -9,13 +9,13 @@ import UIKit
 
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
+    var departements = [] as [String]
+    var handicaps = ["Handicap mental", "Handicap visuel", "Handicap auditif", "Handicap moteur"]
+    var nbTotalLieux : Int = 0
+    
     //PickerView Initialisation
     @IBOutlet weak var pickerDepartement: UIPickerView!
     @IBOutlet weak var pickerHandicap: UIPickerView?
-    
-    var departements = [] as [String]
-
-    var handicaps = ["Handicap mental", "Handicap visuel", "Handicap auditif", "Handicap moteur"]
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -29,16 +29,12 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         return departements[row]
     }
     //Fin PickerView Initialisation
-       
     
-    
-    
-    //var urlAPI = "https://data.iledefrance.fr/explore/dataset/cartographie_des_etablissements_tourisme_handicap/api/"
-    var urlDeBase = "https://data.iledefrance.fr/api/records/1.0/search/?dataset=cartographie_des_etablissements_tourisme_handicap"
+    let urlDeBase = "https://data.iledefrance.fr/api/records/1.0/search/?dataset=cartographie_des_etablissements_tourisme_handicap"
+    let urlOptionDepartement = "&q=&facet=departement"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        view.backgroundColor = .red
         
         pickerDepartement.delegate = self
         pickerDepartement.dataSource = self
@@ -46,7 +42,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     func connectionAPI() {
-        let texteURL = "\(urlDeBase)&q=&facet=departement"
+        let texteURL = "\(urlDeBase)\(urlOptionDepartement)"
         let urlEncodee = texteURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         guard urlEncodee != nil else { debugPrint("Problème d'encodage de l'URL : \(texteURL)"); return }
         let url = URL(string: urlEncodee!)
