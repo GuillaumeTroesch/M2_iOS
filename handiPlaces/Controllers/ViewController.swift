@@ -11,15 +11,20 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     //PickerView Initialisation
     @IBOutlet weak var pickerDepartement: UIPickerView!
+    @IBOutlet weak var pickerHandicap: UIPickerView?
     
     var departements = [] as [String]
+
+    var handicaps = ["Handicap mental", "Handicap visuel", "Handicap auditif", "Handicap moteur"]
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
+    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return departements.count
     }
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return departements[row]
     }
@@ -56,8 +61,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                     let dataDecode = JSONDecoder()
                     do {
                         let donnee = try dataDecode.decode(Donnee.self, from: data)
-                        print(donnee.facet_groups[0].facets)
-                        
                         
                         DispatchQueue.main.async {
                             for facet in donnee.facet_groups[0].facets
