@@ -37,6 +37,9 @@
                                         <subviews>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="oBu-AG-8uN">
                                                 <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
+                                                <connections>
+                                                    <action selector="HandMental:" destination="BYZ-38-t0r" eventType="valueChanged" id="zlR-p4-UTl"/>
+                                                </connections>
                                             </switch>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Handicap mental" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hi3-u4-9c2">
                                                 <rect key="frame" x="53" y="0.0" width="286" height="31"/>
@@ -63,6 +66,9 @@
                                         <subviews>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dCI-UV-Bjg">
                                                 <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
+                                                <connections>
+                                                    <action selector="HandAuditif:" destination="BYZ-38-t0r" eventType="valueChanged" id="SoF-3G-IkH"/>
+                                                </connections>
                                             </switch>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Handicap auditif" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rGv-u2-1LF">
                                                 <rect key="frame" x="53" y="0.0" width="286" height="31"/>
@@ -89,6 +95,9 @@
                                         <subviews>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="hsg-Ob-xXy">
                                                 <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
+                                                <connections>
+                                                    <action selector="HandVisuel:" destination="BYZ-38-t0r" eventType="valueChanged" id="hfz-H6-bzX"/>
+                                                </connections>
                                             </switch>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Handicap visuel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xeb-PH-VlZ">
                                                 <rect key="frame" x="53" y="0.0" width="286" height="31"/>
@@ -115,6 +124,9 @@
                                         <subviews>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="L9M-C9-6fc">
                                                 <rect key="frame" x="0.0" y="0.0" width="51" height="32"/>
+                                                <connections>
+                                                    <action selector="HandMoteur:" destination="BYZ-38-t0r" eventType="valueChanged" id="kF8-mF-D16"/>
+                                                </connections>
                                             </switch>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Handicap moteur" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tHs-fA-xUl">
                                                 <rect key="frame" x="53" y="0.0" width="285" height="32"/>
@@ -163,6 +175,7 @@
                     <navigationItem key="navigationItem" title="Accueil" id="StT-Zf-1Us"/>
                     <connections>
                         <outlet property="pickerDepartement" destination="Etg-7d-eBY" id="55j-m8-0pg"/>
+                        <outlet property="switchMental" destination="oBu-AG-8uN" id="oOF-hP-Xbo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

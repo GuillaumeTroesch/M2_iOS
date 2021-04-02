@@ -17,9 +17,9 @@ class ResultatsController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(optionRows)
-        print(optionDepartement)
-//        connectionAPI()
+//        print(optionRows)
+//        print(optionDepartement)
+        connectionAPI()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -95,13 +95,12 @@ class ResultatsController: UITableViewController {
                         let donnee = try dataDecode.decode(Donnee.self, from: data)
                         
                         DispatchQueue.main.async {
-                            
-                            /*for record in donnee.records
+                            self.optionRows = donnee.nhits
+                            for record in donnee.records
                             {
                                 self.lieux.append(record)
                             }
-                            self.tableView.reloadData()*/
-//                            self.pickerDepartement.delegate = self
+                            self.tableView.reloadData()
                         }
                     } catch {
                         print(error)
