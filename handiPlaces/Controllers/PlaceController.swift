@@ -9,6 +9,8 @@ import UIKit
 
 class PlaceController: UIViewController {
 
+    var recordid: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

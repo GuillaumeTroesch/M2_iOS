@@ -18,8 +18,6 @@ class ResultatsController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        print(optionRows)
-//        print(optionDepartement)
         connectionAPI()
 
         // Uncomment the following line to preserve selection between presentations
@@ -79,9 +77,7 @@ class ResultatsController: UITableViewController {
         let DvC = Storyboard.instantiateViewController(withIdentifier: "placeController") as! PlaceController
         tableView.deselectRow(at: indexPath, animated: true)
 
-//        DvC.imageCurrent = headlines[indexPath.row].image
-//        DvC.titleCurrent = headlines[indexPath.row].title
-//        DvC.desriptionCurrent = headlines[indexPath.row].text
+        DvC.recordid = lieux[indexPath.row].recordid
         
         self.navigationController?.pushViewController(DvC, animated: true)
     }
