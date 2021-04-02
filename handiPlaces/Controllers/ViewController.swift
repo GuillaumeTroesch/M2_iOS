@@ -12,6 +12,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     var departements = [] as [String]
     var handicaps = ["Handicap mental", "Handicap visuel", "Handicap auditif", "Handicap moteur"]
     var nbTotalLieux : Int = 0
+    var departementSelected : String = ""
     
     //PickerView Initialisation
     @IBOutlet weak var pickerDepartement: UIPickerView!
@@ -28,6 +29,10 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return departements[row]
     }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        departementSelected = departements[row]
+    }
     //Fin PickerView Initialisation
     
     override func viewDidLoad() {
@@ -39,7 +44,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     func connectionAPI() {
-        let texteURL = "\(urlDeBase)\(urlOption)\(urlOptionDepartement)"
+        let texteURL = "\(Constant.urlDeBase)\(Constant.urlOption)\(Constant.urlOptionDepartements)"
         let urlEncodee = texteURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         guard urlEncodee != nil else { debugPrint("Problème d'encodage de l'URL : \(texteURL)"); return }
         let url = URL(string: urlEncodee!)
@@ -78,9 +83,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         let Storyboard = UIStoryboard(name: "Main", bundle: nil)
         let DvC = Storyboard.instantiateViewController(withIdentifier: "ResultatsController") as! ResultatsController
 
-        DvC.imageCurrent = headlines[indexPath.row].image
-        DvC.titleCurrent = headlines[indexPath.row].title
-        DvC.desriptionCurrent = headlines[indexPath.row].text
+        DvC.optionRows = nbTotalLieux
+        DvC.optionDepartement = departementSelected
         
         self.navigationController?.pushViewController(DvC, animated: true)
     }
