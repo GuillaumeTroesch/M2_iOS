@@ -38,6 +38,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     @IBAction func gotoFavoris() {
         //TODO dire que ce sont les favoris, et pas une recherche
         let vc = storyboard?.instantiateViewController(identifier: "ResultatsController") as! ResultatsController
+        vc.isRecherche = false
+        vc.optionRowsMax = nbTotalLieux
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -124,6 +126,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             print(handicap)
         }
 
+        DvC.isRecherche = true
         DvC.optionRowsMax = nbTotalLieux
         DvC.optionDepartement = departementSelected
         DvC.optionHandicaps = handicapsSelected

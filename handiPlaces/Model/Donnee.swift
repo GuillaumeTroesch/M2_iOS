@@ -13,7 +13,7 @@ struct Constant {
     static let urlOptionDepartements = "&facet=departement"
     static let urlOptionDepartement = "&departement="
     static let urlOptionNbRows = "&rows="
-    static let urlOptionRecordid = "&recordid="
+    static let urlOptionRecordid = "recordid="
     static let handicap_auditif = "handicap_auditif"
     static let handicap_mental = "handicap_mental"
     static let handicap_visuel = "handicap_visuel"

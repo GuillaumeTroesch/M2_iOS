@@ -9,16 +9,22 @@ import UIKit
 
 class ResultatsController: UITableViewController {
     
+    var isRecherche: Bool = true
     var optionRowsMax: Int = 0
     var optionRows : Int = 0
     var optionDepartement : String = ""
     var optionHandicaps : [String] = []
     
+    
     var lieux : [Record] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        connectionAPI()
+        if isRecherche {
+            connectionAPIRecherche()
+        } else {
+            connectionAPIFavoris()
+        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -42,7 +48,7 @@ class ResultatsController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "prototype1", for: indexPath) as! TableViewCell
-        print(indexPath.row)
+//        print(indexPath.row)
         let field = lieux[indexPath.row].fields
         // Configure the cell
         cell.etablissementCell?.text = field.etablissement
@@ -99,7 +105,8 @@ class ResultatsController: UITableViewController {
         self.navigationController?.pushViewController(DvC, animated: true)
     }
     
-    func connectionAPI() {
+    func connectionAPIRecherche() {
+        print("recherche")
         var texteURL = "\(Constant.urlDeBase)\(Constant.urlOption)\(Constant.urlOptionDepartements)\(Constant.urlOptionDepartement)\(optionDepartement)"
         if optionRows > 0 {
             texteURL += "\(Constant.urlOptionNbRows)\(optionRows)"
@@ -119,7 +126,7 @@ class ResultatsController: UITableViewController {
             default: break
             }
         }
-//        print(texteURL)
+        print(texteURL)
         let urlEncodee = texteURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         guard urlEncodee != nil else { debugPrint("Problème d'encodage de l'URL : \(texteURL)"); return }
         let url = URL(string: urlEncodee!)
@@ -153,6 +160,64 @@ class ResultatsController: UITableViewController {
             }
         }
         tache.resume()
+    }
+    
+    func connectionAPIFavoris() {
+        print("favoris")
+        let defaults = UserDefaults.standard
+        
+        let arr = defaults.stringArray(forKey: "favo") ?? [String]()
+        
+        var texteURL = "\(Constant.urlDeBase)\(Constant.urlOption)"
+        
+        if arr.isEmpty == false {
+            for i in 0...arr.count - 1 {
+                texteURL += "\(Constant.urlOptionRecordid)\(arr[i])"
+                if arr.count > i + 1 {
+                    texteURL += "+or+"
+                }
+            }
+            
+            if optionRows > 0 {
+                texteURL += "\(Constant.urlOptionNbRows)\(optionRows)"
+            } else if optionRows == 0 {
+                texteURL += "\(Constant.urlOptionNbRows)\(optionRowsMax)"
+            }
+            print(texteURL)
+            
+            let urlEncodee = texteURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            guard urlEncodee != nil else { debugPrint("Problème d'encodage de l'URL : \(texteURL)"); return }
+            let url = URL(string: urlEncodee!)
+            
+            let session = URLSession(configuration: .default)
+            let tache = session.dataTask(with: url!) { (data, response, error) in
+                if error != nil {
+                    print("Problème lors de la requête : \(error!)")
+                } else {
+                    print("OK")
+                    if let data = data {
+                        let dataDecode = JSONDecoder()
+                        do {
+                            let donnee = try dataDecode.decode(Donnee.self, from: data)
+                            
+                            DispatchQueue.main.async {
+                                self.optionRows = donnee.nhits
+                                for record in donnee.records
+                                {
+                                    self.lieux.append(record)
+                                }
+                                self.tableView.reloadData()
+                            }
+                        } catch {
+                            print(error)
+                        }
+                    } else {
+                        print("Aucune donnée retournée")
+                    }
+                }
+            }
+            tache.resume()
+        }
     }
 
     /*
