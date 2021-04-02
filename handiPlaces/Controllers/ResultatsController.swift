@@ -50,10 +50,27 @@ class ResultatsController: UITableViewController {
         let tmp = field.ville + " - " + field.departement
         cell.villeEtDepartementCell?.text = tmp
         
-        cell.handicapAuditif?.isHidden = true
-        cell.handicapVisual?.isHidden = true
-        cell.handicapMoteur?.isHidden = true
-        cell.handicapMental?.isHidden = true
+        if field.handicap_auditif == "oui" {
+            cell.handicapAuditif?.isHidden = false
+        } else {
+            cell.handicapAuditif?.isHidden = true
+        }
+        if field.handicap_visuel == "oui" {
+            cell.handicapVisual?.isHidden = false
+        } else {
+            cell.handicapVisual?.isHidden = true
+        }
+        if field.handicap_moteur == "oui" {
+            cell.handicapMoteur?.isHidden = false
+        } else {
+            cell.handicapMoteur?.isHidden = true
+        }
+        if field.handicap_mental == "oui" {
+            cell.handicapMental?.isHidden = false
+        } else {
+            cell.handicapMental?.isHidden = true
+        }/*
+        
         for handicap in optionHandicaps {
             switch handicap {
             case Constant.handicap_auditif:
@@ -67,7 +84,7 @@ class ResultatsController: UITableViewController {
             default:
                 break
             }
-        }
+        }*/
 
         return cell
     }
@@ -102,7 +119,7 @@ class ResultatsController: UITableViewController {
             default: break
             }
         }
-        print(texteURL)
+//        print(texteURL)
         let urlEncodee = texteURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         guard urlEncodee != nil else { debugPrint("Problème d'encodage de l'URL : \(texteURL)"); return }
         let url = URL(string: urlEncodee!)
@@ -124,7 +141,7 @@ class ResultatsController: UITableViewController {
                             {
                                 self.lieux.append(record)
                             }
-                            print(self.optionRows)
+//                            print(self.optionRows)
                             self.tableView.reloadData()
                         }
                     } catch {
