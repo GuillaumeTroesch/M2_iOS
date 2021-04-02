@@ -18,8 +18,16 @@ class PlaceController: UIViewController {
     @IBAction func gotoWebSite() {
         //TODO passer le site
         let vc = storyboard?.instantiateViewController(identifier: "websiteController") as! WebsiteController
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true)
+//        vc.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func addFavorite() {
+        //TODO verifier si deja dans favoris
+        let defaults = UserDefaults.standard
+        var arr = defaults.stringArray(forKey: "fav") ?? [String]()
+        arr.append("newID")
+        defaults.set(arr,forKey: "fav")
     }
 
     /*

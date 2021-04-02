@@ -6,16 +6,18 @@
 //
 
 import UIKit
+import WebKit
 
 class WebsiteController: UIViewController {
 
+    @IBOutlet var webview: WKWebView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        webview.load(URLRequest(url: URL(string: "https://www.google.fr")!))
     }
     
-
     /*
     // MARK: - Navigation
 
@@ -25,5 +27,4 @@ class WebsiteController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }
