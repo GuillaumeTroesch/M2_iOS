@@ -32,13 +32,13 @@ struct FacetGroups : Decodable {
 }
 
 struct Field : Decodable {
-    var etablissement : String?
-    var ville : String?
-    var departement : String?
-    var handicap_moteur : String?
-    var handicap_mental : String?
-    var handicap_visuel : String?
-    var handicap_auditif : String?
+    var etablissement : String
+    var ville : String
+    var departement : String
+    var handicap_moteur : String
+    var handicap_mental : String
+    var handicap_visuel : String
+    var handicap_auditif : String
     var adresse : String?
 }
 

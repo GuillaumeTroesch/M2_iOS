@@ -11,6 +11,7 @@ class PlaceController: UIViewController {
 
     let defaults = UserDefaults.standard
     @IBOutlet weak var btnAddFav: UIButton!
+    var recordid: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
