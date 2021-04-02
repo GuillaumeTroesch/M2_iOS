@@ -48,7 +48,7 @@ class ResultatsController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "prototype1", for: indexPath) as! TableViewCell
-//        print(indexPath.row)
+        
         let field = lieux[indexPath.row].fields
         // Configure the cell
         cell.etablissementCell?.text = field.etablissement
@@ -93,24 +93,26 @@ class ResultatsController: UITableViewController {
     
     func connectionAPIRecherche() {
         print("recherche")
-        var texteURL = "\(Constant.urlDeBase)\(Constant.urlOption)\(Constant.urlOptionDepartements)\(Constant.urlOptionDepartement)\(optionDepartement)"
+        var texteURL = "\(Constant.urlDeBase)\(Constant.urlOptionDepartements)\(Constant.urlOptionDepartement)\(optionDepartement)"
         if optionRows > 0 {
             texteURL += "\(Constant.urlOptionNbRows)\(optionRows)"
         } else if optionRows == 0 {
             texteURL += "\(Constant.urlOptionNbRows)\(optionRowsMax)"
         }
+        texteURL += "\(Constant.urlOption)"
         for handicap in optionHandicaps {
             switch handicap {
             case Constant.handicap_mental:
-                texteURL += "&\(handicap)=oui"
+                texteURL += "\(handicap)=Oui"
             case Constant.handicap_moteur:
-                texteURL += "&\(handicap)=oui"
+                texteURL += "\(handicap)=Oui"
             case Constant.handicap_visuel:
-                texteURL += "&\(handicap)=oui"
+                texteURL += "\(handicap)=Oui"
             case Constant.handicap_auditif:
-                texteURL += "&\(handicap)=oui"
+                texteURL += "\(handicap)=Oui"
             default: break
             }
+//            texteURL += "+and+"
         }
         print(texteURL)
         let urlEncodee = texteURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
@@ -184,7 +186,7 @@ class ResultatsController: UITableViewController {
                     if let data = data {
                         let dataDecode = JSONDecoder()
                         do {
-                            let donnee = try dataDecode.decode(Donnee.self, from: data)
+                            let donnee = try dataDecode.decode(DonneePlace.self, from: data)
                             
                             DispatchQueue.main.async {
                                 self.optionRows = donnee.nhits

@@ -36,7 +36,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         rechercher()
     }
     @IBAction func gotoFavoris() {
-        //TODO dire que ce sont les favoris, et pas une recherche
         let vc = storyboard?.instantiateViewController(identifier: "ResultatsController") as! ResultatsController
         vc.isRecherche = false
         vc.optionRowsMax = nbTotalLieux
