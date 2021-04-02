@@ -12,6 +12,9 @@ class MapController: UIViewController {
     
     @IBOutlet weak var map: MKMapView!
     
+    var lat : Float = 0
+    var lon : Float = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

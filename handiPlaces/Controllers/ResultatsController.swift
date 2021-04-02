@@ -56,26 +56,12 @@ class ResultatsController: UITableViewController {
         let tmp = field.ville + " - " + field.departement
         cell.villeEtDepartementCell?.text = tmp
         
-        if field.handicap_auditif == "oui" {
-            cell.handicapAuditif?.isHidden = false
-        } else {
-            cell.handicapAuditif?.isHidden = true
-        }
-        if field.handicap_visuel == "oui" {
-            cell.handicapVisual?.isHidden = false
-        } else {
-            cell.handicapVisual?.isHidden = true
-        }
-        if field.handicap_moteur == "oui" {
-            cell.handicapMoteur?.isHidden = false
-        } else {
-            cell.handicapMoteur?.isHidden = true
-        }
-        if field.handicap_mental == "oui" {
-            cell.handicapMental?.isHidden = false
-        } else {
-            cell.handicapMental?.isHidden = true
-        }/*
+        cell.handicapMental?.isHidden = field.handicap_mental == "Non"
+        cell.handicapAuditif?.isHidden = field.handicap_auditif == "Non"
+        cell.handicapVisual?.isHidden = field.handicap_visuel == "Non"
+        cell.handicapMoteur?.isHidden = field.handicap_moteur == "Non"
+        
+        /*
         
         for handicap in optionHandicaps {
             switch handicap {

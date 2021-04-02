@@ -49,7 +49,7 @@ class PlaceController: UIViewController {
     }
     
     @IBAction func addFavorite() {
-        //TODO verifier si deja dans favoris
+        
         var arr = defaults.stringArray(forKey: "favo") ?? [String]()
         arr.append(recordid)
         defaults.set(arr,forKey: "favo")
@@ -88,13 +88,18 @@ class PlaceController: UIViewController {
                             print(donnee)
                             for record in donnee.records //normalement, 1 seul resultat
                             {
-                               
                                 self.nom.text = record.fields.etablissement
                                 self.ville.text = record.fields.ville
                                 self.departement.text = record.fields.departement
                                 self.adresse.text = record.fields.adresse
                                 self.activite.text = record.fields.activit
                                 self.website = record.fields.siteweb ?? ""
+                                self.handicapMental.isHidden = record.fields.handicap_mental == "Non"
+                                self.handicapAuditif.isHidden = record.fields.handicap_auditif == "Non"
+                                self.handicapVisuel.isHidden = record.fields.handicap_visuel == "Non"
+                                self.handicapMoteur.isHidden = record.fields.handicap_moteur == "Non"
+                                
+                               
 //                                self.lat = record.fields.geo[0]
 //                                self.lon = record.fields.geo[1]
                             }
