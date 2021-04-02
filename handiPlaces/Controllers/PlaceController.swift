@@ -22,6 +22,13 @@ class PlaceController: UIViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
+    @IBAction func gotoMap() {
+        //TODO passer le site
+        let vc = storyboard?.instantiateViewController(identifier: "mapController") as! MapController
+//        vc.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     @IBAction func addFavorite() {
         //TODO verifier si deja dans favoris
         let defaults = UserDefaults.standard

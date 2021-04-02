@@ -45,7 +45,7 @@ class ResultatsController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "prototype1", for: indexPath) as! TableViewCell
 
         // Configure the cell
-        cell.etablissementCell?.text = lieux[indexPath.row].fields.etablissement
+//        cell.etablissementCell?.text = lieux[indexPath.row].fields.etablissement
 //        cell.textLabel?.text = "Titre"
 
         return cell
