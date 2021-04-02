@@ -42,13 +42,13 @@ struct Field : Decodable {
     var adresse : String
 }
 
-struct Records : Decodable {
+struct Record : Decodable {
     var recordid : String
-    var fields : [Field]
+    var fields : Field
 }
 
 struct Donnee : Decodable {
     var nhits : Int
     var facet_groups : [FacetGroups]
-    var records : [Records]
+    var records : [Record]
 }

@@ -12,9 +12,14 @@ class ResultatsController: UITableViewController {
     var optionRows : Int = 10
     var optionDepartement : String = ""
     var optionHandicaps : [String] = []
-
+    
+    var lieux : [Record] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(optionRows)
+        print(optionDepartement)
+//        connectionAPI()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -40,6 +45,7 @@ class ResultatsController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "prototype1", for: indexPath)
 
         // Configure the cell
+        
         cell.textLabel?.text = "Titre"
 
         return cell
@@ -88,13 +94,15 @@ class ResultatsController: UITableViewController {
                     do {
                         let donnee = try dataDecode.decode(Donnee.self, from: data)
                         
-                        /*DispatchQueue.main.async {
-                            for facet in donnee.facet_groups[0].facets
+                        DispatchQueue.main.async {
+                            
+                            /*for record in donnee.records
                             {
-                                self.departements.append(facet.name)
+                                self.lieux.append(record)
                             }
-                            self.pickerDepartement.delegate = self
-                        }*/
+                            self.tableView.reloadData()*/
+//                            self.pickerDepartement.delegate = self
+                        }
                     } catch {
                         print(error)
                     }

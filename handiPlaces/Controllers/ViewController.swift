@@ -16,7 +16,9 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     //PickerView Initialisation
     @IBOutlet weak var pickerDepartement: UIPickerView!
-    @IBOutlet weak var pickerHandicap: UIPickerView?
+    @IBAction func Rechercher(_ sender: UIButton) {
+        rechercher()
+    }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -81,7 +83,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     func rechercher() {
         let Storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let DvC = Storyboard.instantiateViewController(withIdentifier: "ResultatsController") as! ResultatsController
+        let DvC = Storyboard.instantiateViewController(withIdentifier: "Resultats") as! ResultatsController
 
         DvC.optionRows = nbTotalLieux
         DvC.optionDepartement = departementSelected

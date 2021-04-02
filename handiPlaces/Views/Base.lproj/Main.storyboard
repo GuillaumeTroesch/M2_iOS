@@ -140,6 +140,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UNu-wR-X2f">
                                 <rect key="frame" x="315" y="364" width="79" height="30"/>
                                 <state key="normal" title="Rechercher"/>
+                                <connections>
+                                    <action selector="Rechercher:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LIx-kT-TVK"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
