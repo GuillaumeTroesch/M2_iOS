@@ -9,16 +9,22 @@ import UIKit
 
 class ResultatsController: UITableViewController {
     
+    var isRecherche: Bool = true
     var optionRowsMax: Int = 0
     var optionRows : Int = 0
     var optionDepartement : String = ""
     var optionHandicaps : [String] = []
     
+    
     var lieux : [Record] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        connectionAPI()
+        if isRecherche {
+            connectionAPIRecherche()
+        } else {
+            connectionAPIFavoris()
+        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -42,7 +48,7 @@ class ResultatsController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "prototype1", for: indexPath) as! TableViewCell
-        print(indexPath.row)
+//        print(indexPath.row)
         let field = lieux[indexPath.row].fields
         // Configure the cell
         cell.etablissementCell?.text = field.etablissement
@@ -50,10 +56,27 @@ class ResultatsController: UITableViewController {
         let tmp = field.ville + " - " + field.departement
         cell.villeEtDepartementCell?.text = tmp
         
-        cell.handicapAuditif?.isHidden = true
-        cell.handicapVisual?.isHidden = true
-        cell.handicapMoteur?.isHidden = true
-        cell.handicapMental?.isHidden = true
+        if field.handicap_auditif == "oui" {
+            cell.handicapAuditif?.isHidden = false
+        } else {
+            cell.handicapAuditif?.isHidden = true
+        }
+        if field.handicap_visuel == "oui" {
+            cell.handicapVisual?.isHidden = false
+        } else {
+            cell.handicapVisual?.isHidden = true
+        }
+        if field.handicap_moteur == "oui" {
+            cell.handicapMoteur?.isHidden = false
+        } else {
+            cell.handicapMoteur?.isHidden = true
+        }
+        if field.handicap_mental == "oui" {
+            cell.handicapMental?.isHidden = false
+        } else {
+            cell.handicapMental?.isHidden = true
+        }/*
+        
         for handicap in optionHandicaps {
             switch handicap {
             case Constant.handicap_auditif:
@@ -67,7 +90,7 @@ class ResultatsController: UITableViewController {
             default:
                 break
             }
-        }
+        }*/
 
         return cell
     }
@@ -82,7 +105,8 @@ class ResultatsController: UITableViewController {
         self.navigationController?.pushViewController(DvC, animated: true)
     }
     
-    func connectionAPI() {
+    func connectionAPIRecherche() {
+        print("recherche")
         var texteURL = "\(Constant.urlDeBase)\(Constant.urlOption)\(Constant.urlOptionDepartements)\(Constant.urlOptionDepartement)\(optionDepartement)"
         if optionRows > 0 {
             texteURL += "\(Constant.urlOptionNbRows)\(optionRows)"
@@ -124,7 +148,7 @@ class ResultatsController: UITableViewController {
                             {
                                 self.lieux.append(record)
                             }
-                            print(self.optionRows)
+//                            print(self.optionRows)
                             self.tableView.reloadData()
                         }
                     } catch {
@@ -136,6 +160,64 @@ class ResultatsController: UITableViewController {
             }
         }
         tache.resume()
+    }
+    
+    func connectionAPIFavoris() {
+        print("favoris")
+        let defaults = UserDefaults.standard
+        
+        let arr = defaults.stringArray(forKey: "favo") ?? [String]()
+        
+        var texteURL = "\(Constant.urlDeBase)\(Constant.urlOption)"
+        
+        if arr.isEmpty == false {
+            for i in 0...arr.count - 1 {
+                texteURL += "\(Constant.urlOptionRecordid)\(arr[i])"
+                if arr.count > i + 1 {
+                    texteURL += "+or+"
+                }
+            }
+            
+            if optionRows > 0 {
+                texteURL += "\(Constant.urlOptionNbRows)\(optionRows)"
+            } else if optionRows == 0 {
+                texteURL += "\(Constant.urlOptionNbRows)\(optionRowsMax)"
+            }
+            print(texteURL)
+            
+            let urlEncodee = texteURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            guard urlEncodee != nil else { debugPrint("Problème d'encodage de l'URL : \(texteURL)"); return }
+            let url = URL(string: urlEncodee!)
+            
+            let session = URLSession(configuration: .default)
+            let tache = session.dataTask(with: url!) { (data, response, error) in
+                if error != nil {
+                    print("Problème lors de la requête : \(error!)")
+                } else {
+                    print("OK")
+                    if let data = data {
+                        let dataDecode = JSONDecoder()
+                        do {
+                            let donnee = try dataDecode.decode(Donnee.self, from: data)
+                            
+                            DispatchQueue.main.async {
+                                self.optionRows = donnee.nhits
+                                for record in donnee.records
+                                {
+                                    self.lieux.append(record)
+                                }
+                                self.tableView.reloadData()
+                            }
+                        } catch {
+                            print(error)
+                        }
+                    } else {
+                        print("Aucune donnée retournée")
+                    }
+                }
+            }
+            tache.resume()
+        }
     }
 
     /*
