@@ -9,7 +9,8 @@ import UIKit
 
 class ResultatsController: UITableViewController {
     
-    var optionRows : Int = 10
+    var optionRowsMax: Int = 0
+    var optionRows : Int = 0
     var optionDepartement : String = ""
     var optionHandicaps : [String] = []
     
@@ -43,10 +44,23 @@ class ResultatsController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "prototype1", for: indexPath) as! TableViewCell
-
+        print(indexPath.row)
         // Configure the cell
+//<<<<<<< Updated upstream
 //        cell.etablissementCell?.text = lieux[indexPath.row].fields.etablissement
 //        cell.textLabel?.text = "Titre"
+//=======
+        cell.etablissementCell?.text = lieux[indexPath.row].fields.etablissement
+        cell.adresseCell?.text = lieux[indexPath.row].fields.adresse
+//        cell.villeEtDepartementCell?.text = lieux[indexPath.row].fields.ville + " " + lieux[indexPath.row].fields.departement
+        cell.handicapAuditif?.isHidden = true
+        cell.handicapVisual?.isHidden = true
+        cell.handicapMoteur?.isHidden = true
+        cell.handicapMental?.isHidden = true
+        /*for handicap in optionHandicaps {
+            
+        }*/
+//>>>>>>> Stashed changes
 
         return cell
     }
@@ -64,7 +78,12 @@ class ResultatsController: UITableViewController {
     }
     
     func connectionAPI() {
-        var texteURL = "\(Constant.urlDeBase)\(Constant.urlOption)\(Constant.urlOptionDepartements)\(Constant.urlOptionNbRows)\(optionRows)\(Constant.urlOptionDepartement)\(optionDepartement)"
+        var texteURL = "\(Constant.urlDeBase)\(Constant.urlOption)\(Constant.urlOptionDepartements)\(Constant.urlOptionDepartement)\(optionDepartement)"
+        if optionRows > 0 {
+            texteURL += "\(Constant.urlOptionNbRows)\(optionRows)"
+        } else if optionRows == 0 {
+            texteURL += "\(Constant.urlOptionNbRows)\(optionRowsMax)"
+        }
         for handicap in optionHandicaps {
             switch handicap {
             case Constant.handicap_mental:
@@ -78,7 +97,7 @@ class ResultatsController: UITableViewController {
             default: break
             }
         }
-        
+        print(texteURL)
         let urlEncodee = texteURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         guard urlEncodee != nil else { debugPrint("Problème d'encodage de l'URL : \(texteURL)"); return }
         let url = URL(string: urlEncodee!)
@@ -100,6 +119,7 @@ class ResultatsController: UITableViewController {
                             {
                                 self.lieux.append(record)
                             }
+                            print(self.optionRows)
                             self.tableView.reloadData()
                         }
                     } catch {
