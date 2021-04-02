@@ -35,6 +35,11 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     @IBAction func Rechercher(_ sender: UIButton) {
         rechercher()
     }
+    @IBAction func gotoFavoris() {
+        //TODO dire que ce sont les favoris, et pas une recherche
+        let vc = storyboard?.instantiateViewController(identifier: "ResultatsController") as! ResultatsController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1

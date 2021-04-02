@@ -18,14 +18,12 @@ class PlaceController: UIViewController {
     @IBAction func gotoWebSite() {
         //TODO passer le site
         let vc = storyboard?.instantiateViewController(identifier: "websiteController") as! WebsiteController
-//        vc.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func gotoMap() {
         //TODO passer le site
         let vc = storyboard?.instantiateViewController(identifier: "mapController") as! MapController
-//        vc.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
