@@ -184,7 +184,7 @@ class ResultatsController: UITableViewController {
                     if let data = data {
                         let dataDecode = JSONDecoder()
                         do {
-                            let donnee = try dataDecode.decode(Donnee.self, from: data)
+                            let donnee = try dataDecode.decode(DonneePlace.self, from: data)
                             
                             DispatchQueue.main.async {
                                 self.optionRows = donnee.nhits
