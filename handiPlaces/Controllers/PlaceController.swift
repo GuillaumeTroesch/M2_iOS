@@ -38,7 +38,10 @@ class PlaceController: UIViewController {
     @IBAction func gotoWebSite() {
         //TODO passer le site
         let vc = storyboard?.instantiateViewController(identifier: "websiteController") as! WebsiteController
+//        let urlEncodee = website.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+//        vc.website = urlEncodee
         vc.website = website
+        print(website)
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -51,8 +54,10 @@ class PlaceController: UIViewController {
     @IBAction func addFavorite() {
         //TODO verifier si deja dans favoris
         var arr = defaults.stringArray(forKey: "favo") ?? [String]()
-        arr.append(recordid)
-        defaults.set(arr,forKey: "favo")
+        if isInFavoris(id: recordid) == false {
+            arr.append(recordid)
+            defaults.set(arr,forKey: "favo")
+        }
     }
     
     func isInFavoris(id: String) -> Bool {
@@ -94,9 +99,21 @@ class PlaceController: UIViewController {
                                 self.departement.text = record.fields.departement
                                 self.adresse.text = record.fields.adresse
                                 self.activite.text = record.fields.activit
-                                self.website = record.fields.siteweb ?? ""
+                                self.website = record.fields.siteweb ?? "https://www.google.com"
 //                                self.lat = record.fields.geo[0]
 //                                self.lon = record.fields.geo[1]
+                                if record.fields.handicap_auditif == "non" {
+                                    self.handicapAuditif?.isHidden = true
+                                }
+                                if record.fields.handicap_visuel == "non" {
+                                    self.handicapVisuel?.isHidden = true
+                                }
+                                if record.fields.handicap_moteur == "non" {
+                                    self.handicapMoteur?.isHidden = true
+                                }
+                                if record.fields.handicap_mental == "non" {
+                                    self.handicapMental?.isHidden = true
+                                }
                             }
                         }
                     } catch {
