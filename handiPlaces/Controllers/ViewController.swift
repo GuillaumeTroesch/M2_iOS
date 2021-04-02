@@ -9,13 +9,13 @@ import UIKit
 
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
+    var departements = [] as [String]
+    var handicaps = ["Handicap mental", "Handicap visuel", "Handicap auditif", "Handicap moteur"]
+    var nbTotalLieux : Int = 0
+    
     //PickerView Initialisation
     @IBOutlet weak var pickerDepartement: UIPickerView!
     @IBOutlet weak var pickerHandicap: UIPickerView?
-    
-    var departements = [] as [String]
-
-    var handicaps = ["Handicap mental", "Handicap visuel", "Handicap auditif", "Handicap moteur"]
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -29,16 +29,9 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         return departements[row]
     }
     //Fin PickerView Initialisation
-       
-    
-    
-    
-    //var urlAPI = "https://data.iledefrance.fr/explore/dataset/cartographie_des_etablissements_tourisme_handicap/api/"
-    var urlDeBase = "https://data.iledefrance.fr/api/records/1.0/search/?dataset=cartographie_des_etablissements_tourisme_handicap"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        view.backgroundColor = .red
         
         pickerDepartement.delegate = self
         pickerDepartement.dataSource = self
@@ -46,7 +39,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     func connectionAPI() {
-        let texteURL = "\(urlDeBase)&q=&facet=departement"
+        let texteURL = "\(urlDeBase)\(urlOption)\(urlOptionDepartement)"
         let urlEncodee = texteURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         guard urlEncodee != nil else { debugPrint("Problème d'encodage de l'URL : \(texteURL)"); return }
         let url = URL(string: urlEncodee!)
@@ -63,6 +56,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                         let donnee = try dataDecode.decode(Donnee.self, from: data)
                         
                         DispatchQueue.main.async {
+                            self.nbTotalLieux = donnee.nhits
                             for facet in donnee.facet_groups[0].facets
                             {
                                 self.departements.append(facet.name)
@@ -78,6 +72,17 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             }
         }
         tache.resume()
+    }
+    
+    func rechercher() {
+        let Storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let DvC = Storyboard.instantiateViewController(withIdentifier: "ResultatsController") as! ResultatsController
+
+        DvC.imageCurrent = headlines[indexPath.row].image
+        DvC.titleCurrent = headlines[indexPath.row].title
+        DvC.desriptionCurrent = headlines[indexPath.row].text
+        
+        self.navigationController?.pushViewController(DvC, animated: true)
     }
 
 }
