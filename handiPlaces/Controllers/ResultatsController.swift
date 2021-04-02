@@ -46,7 +46,7 @@ class ResultatsController: UITableViewController {
 
         // Configure the cell
         
-        cell.textLabel?.text = "Titre"
+//        cell.textLabel?.text = "Titre"
 
         return cell
     }

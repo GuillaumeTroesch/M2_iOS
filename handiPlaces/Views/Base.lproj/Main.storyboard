@@ -38,7 +38,7 @@
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="oBu-AG-8uN">
                                                 <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
                                                 <connections>
-                                                    <action selector="HandMental:" destination="BYZ-38-t0r" eventType="valueChanged" id="zlR-p4-UTl"/>
+                                                    <action selector="HandMental:" destination="BYZ-38-t0r" eventType="valueChanged" id="ube-pk-UvO"/>
                                                 </connections>
                                             </switch>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Handicap mental" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hi3-u4-9c2">
@@ -175,7 +175,6 @@
                     <navigationItem key="navigationItem" title="Accueil" id="StT-Zf-1Us"/>
                     <connections>
                         <outlet property="pickerDepartement" destination="Etg-7d-eBY" id="55j-m8-0pg"/>
-                        <outlet property="switchMental" destination="oBu-AG-8uN" id="oOF-hP-Xbo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -191,33 +190,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="prototype1" rowHeight="96" id="aBl-Lk-Pzc">
-                                <rect key="frame" x="0.0" y="28" width="414" height="96"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="prototype1" rowHeight="120" id="aBl-Lk-Pzc">
+                                <rect key="frame" x="0.0" y="28" width="414" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aBl-Lk-Pzc" id="OUW-zI-dG1">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="96"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nom etablissement" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4S1-ZS-Xze">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Nom etablissement" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4S1-ZS-Xze">
                                             <rect key="frame" x="20" y="11" width="199" height="26.5"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ville, departement" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ui-Na-CAw">
-                                            <rect key="frame" x="30" y="58" width="139.5" height="20.5"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adresse" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="veH-UT-Nng">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Adresse" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="veH-UT-Nng">
                                             <rect key="frame" x="30" y="37.5" width="62" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Ville, departement" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ui-Na-CAw">
+                                            <rect key="frame" x="30" y="58" width="139.5" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A7l-pv-ge3">
-                                            <rect key="frame" x="274" y="47" width="120" height="30"/>
+                                            <rect key="frame" x="274" y="51" width="120" height="30"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_h_mental" translatesAutoresizingMaskIntoConstraints="NO" id="2FC-IC-w5X">
                                                     <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -252,12 +251,13 @@
                                     <constraints>
                                         <constraint firstItem="4S1-ZS-Xze" firstAttribute="leading" secondItem="OUW-zI-dG1" secondAttribute="leadingMargin" id="1R5-lA-mr5"/>
                                         <constraint firstItem="2ui-Na-CAw" firstAttribute="top" secondItem="veH-UT-Nng" secondAttribute="bottom" id="2r6-GO-Snv"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="A7l-pv-ge3" secondAttribute="bottom" constant="8" id="3d6-ue-SYx"/>
+                                        <constraint firstItem="A7l-pv-ge3" firstAttribute="top" secondItem="OUW-zI-dG1" secondAttribute="topMargin" constant="40" id="8Qe-fE-jtk"/>
                                         <constraint firstItem="4S1-ZS-Xze" firstAttribute="top" secondItem="OUW-zI-dG1" secondAttribute="topMargin" id="LPT-tO-Hqn"/>
                                         <constraint firstItem="2ui-Na-CAw" firstAttribute="leading" secondItem="OUW-zI-dG1" secondAttribute="leadingMargin" constant="10" id="SSC-Js-mQs"/>
                                         <constraint firstItem="veH-UT-Nng" firstAttribute="leading" secondItem="OUW-zI-dG1" secondAttribute="leadingMargin" constant="10" id="Yul-IJ-ioZ"/>
                                         <constraint firstItem="veH-UT-Nng" firstAttribute="top" secondItem="4S1-ZS-Xze" secondAttribute="bottom" id="eLq-rX-aEf"/>
                                         <constraint firstItem="A7l-pv-ge3" firstAttribute="trailing" secondItem="OUW-zI-dG1" secondAttribute="trailingMargin" id="liF-3g-dWU"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="2ui-Na-CAw" secondAttribute="bottom" constant="30" id="rWB-o7-Hr7"/>
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
