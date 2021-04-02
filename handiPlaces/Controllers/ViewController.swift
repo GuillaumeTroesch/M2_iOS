@@ -9,6 +9,7 @@ import UIKit
 
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
+    var nbTotalLieux: Int = 0
     var departements = [] as [String]
     var handicaps = ["Handicap mental", "Handicap visuel", "Handicap auditif", "Handicap moteur"]
     var departementSelected : String = ""
@@ -78,6 +79,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                         let donnee = try dataDecode.decode(Donnee.self, from: data)
                         
                         DispatchQueue.main.async {
+                            self.nbTotalLieux = donnee.nhits
                             for facet in donnee.facet_groups[0].facets
                             {
                                 self.departements.append(facet.name)
@@ -117,6 +119,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             print(handicap)
         }
 
+        DvC.optionRowsMax = nbTotalLieux
         DvC.optionDepartement = departementSelected
         DvC.optionHandicaps = handicapsSelected
         
