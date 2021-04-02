@@ -346,6 +346,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5kt-ch-vAJ">
                                 <rect key="frame" x="143" y="692" width="128" height="30"/>
                                 <state key="normal" title="Ajouter aux favoris"/>
+                                <connections>
+                                    <action selector="addFavorite" destination="bSa-Ms-uKF" eventType="touchUpInside" id="Xzd-Og-qyx"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IPy-ph-K6k">
                                 <rect key="frame" x="152" y="742" width="110" height="30"/>
@@ -405,6 +408,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Lieu" id="FDP-JQ-RA6"/>
+                    <connections>
+                        <outlet property="btnAddFav" destination="5kt-ch-vAJ" id="0h9-4b-z9u"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ttP-vi-UOb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

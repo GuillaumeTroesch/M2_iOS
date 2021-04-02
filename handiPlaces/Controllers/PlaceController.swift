@@ -9,10 +9,14 @@ import UIKit
 
 class PlaceController: UIViewController {
 
+    let defaults = UserDefaults.standard
+    @IBOutlet weak var btnAddFav: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        if isInFavoris(id: "test") {
+            btnAddFav.setTitle("Retirer des favoris", for: .normal)
+        }
     }
     
     @IBAction func gotoWebSite() {
@@ -29,10 +33,21 @@ class PlaceController: UIViewController {
     
     @IBAction func addFavorite() {
         //TODO verifier si deja dans favoris
-        let defaults = UserDefaults.standard
+        print("AH")
         var arr = defaults.stringArray(forKey: "fav") ?? [String]()
         arr.append("newID")
         defaults.set(arr,forKey: "fav")
+        print(isInFavoris(id: "x1"))
+    }
+    
+    func isInFavoris(id: String) -> Bool {
+        let arr = defaults.stringArray(forKey: "fav") ?? [String]()
+        for str in arr {
+            if str==id {
+                return true
+            }
+        }
+        return false
     }
 
     /*
