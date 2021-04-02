@@ -45,14 +45,17 @@ class ResultatsController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "prototype1", for: indexPath) as! TableViewCell
         print(indexPath.row)
+        let field = lieux[indexPath.row].fields
         // Configure the cell
-//<<<<<<< Updated upstream
-//        cell.etablissementCell?.text = lieux[indexPath.row].fields.etablissement
-//        cell.textLabel?.text = "Titre"
-//=======
-        cell.etablissementCell?.text = lieux[indexPath.row].fields.etablissement
-        cell.adresseCell?.text = lieux[indexPath.row].fields.adresse
-//        cell.villeEtDepartementCell?.text = lieux[indexPath.row].fields.ville + " " + lieux[indexPath.row].fields.departement
+//        if let test = field.etablissement {
+            cell.etablissementCell?.text = field.etablissement
+//        }
+//        if let test = field.adresse {
+            cell.adresseCell?.text = field.adresse
+//        }
+        /*if let test = field.ville, let test2 = field.departement {
+            cell.villeEtDepartementCell?.text = lieux[indexPath.row].fields.ville ?? "" + " " + lieux[indexPath.row].fields.departement ?? ""
+        }*/
         cell.handicapAuditif?.isHidden = true
         cell.handicapVisual?.isHidden = true
         cell.handicapMoteur?.isHidden = true
@@ -60,7 +63,6 @@ class ResultatsController: UITableViewController {
         /*for handicap in optionHandicaps {
             
         }*/
-//>>>>>>> Stashed changes
 
         return cell
     }
