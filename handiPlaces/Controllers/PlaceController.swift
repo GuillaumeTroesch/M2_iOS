@@ -38,7 +38,10 @@ class PlaceController: UIViewController {
     @IBAction func gotoWebSite() {
         //TODO passer le site
         let vc = storyboard?.instantiateViewController(identifier: "websiteController") as! WebsiteController
+//        let urlEncodee = website.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+//        vc.website = urlEncodee
         vc.website = website
+        print(website)
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -51,8 +54,10 @@ class PlaceController: UIViewController {
     @IBAction func addFavorite() {
         
         var arr = defaults.stringArray(forKey: "favo") ?? [String]()
-        arr.append(recordid)
-        defaults.set(arr,forKey: "favo")
+        if isInFavoris(id: recordid) == false {
+            arr.append(recordid)
+            defaults.set(arr,forKey: "favo")
+        }
     }
     
     func isInFavoris(id: String) -> Bool {
@@ -93,13 +98,13 @@ class PlaceController: UIViewController {
                                 self.departement.text = record.fields.departement
                                 self.adresse.text = record.fields.adresse
                                 self.activite.text = record.fields.activit
-                                self.website = record.fields.siteweb ?? ""
+                                
                                 self.handicapMental.isHidden = record.fields.handicap_mental == "Non"
                                 self.handicapAuditif.isHidden = record.fields.handicap_auditif == "Non"
                                 self.handicapVisuel.isHidden = record.fields.handicap_visuel == "Non"
                                 self.handicapMoteur.isHidden = record.fields.handicap_moteur == "Non"
                                 
-                               
+                                self.website = record.fields.siteweb ?? "https://www.google.com"
 //                                self.lat = record.fields.geo[0]
 //                                self.lon = record.fields.geo[1]
                             }
