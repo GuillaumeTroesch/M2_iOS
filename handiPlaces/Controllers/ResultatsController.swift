@@ -9,7 +9,7 @@ import UIKit
 
 class ResultatsController: UITableViewController {
     
-    var optionRows : Int = 0
+    var optionRows : Int = 10
     var optionDepartement : String = ""
     var optionHandicaps : [String] = []
 
@@ -55,6 +55,55 @@ class ResultatsController: UITableViewController {
 //        DvC.desriptionCurrent = headlines[indexPath.row].text
         
         self.navigationController?.pushViewController(DvC, animated: true)
+    }
+    
+    func connectionAPI() {
+        var texteURL = "\(Constant.urlDeBase)\(Constant.urlOption)\(Constant.urlOptionDepartements)\(Constant.urlOptionNbRows)\(optionRows)\(Constant.urlOptionDepartement)\(optionDepartement)"
+        for handicap in optionHandicaps {
+            switch handicap {
+            case Constant.handicap_mental:
+                texteURL += "&\(handicap)=oui"
+            case Constant.handicap_moteur:
+                texteURL += "&\(handicap)=oui"
+            case Constant.handicap_visuel:
+                texteURL += "&\(handicap)=oui"
+            case Constant.handicap_auditif:
+                texteURL += "&\(handicap)=oui"
+            default: break
+            }
+        }
+        
+        let urlEncodee = texteURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        guard urlEncodee != nil else { debugPrint("Problème d'encodage de l'URL : \(texteURL)"); return }
+        let url = URL(string: urlEncodee!)
+        
+        let session = URLSession(configuration: .default)
+        let tache = session.dataTask(with: url!) { (data, response, error) in
+            if error != nil {
+                print("Problème lors de la requête : \(error!)")
+            } else {
+                print("OK")
+                if let data = data {
+                    let dataDecode = JSONDecoder()
+                    do {
+                        let donnee = try dataDecode.decode(Donnee.self, from: data)
+                        
+                        /*DispatchQueue.main.async {
+                            for facet in donnee.facet_groups[0].facets
+                            {
+                                self.departements.append(facet.name)
+                            }
+                            self.pickerDepartement.delegate = self
+                        }*/
+                    } catch {
+                        print(error)
+                    }
+                } else {
+                    print("Aucune donnée retournée")
+                }
+            }
+        }
+        tache.resume()
     }
 
     /*
