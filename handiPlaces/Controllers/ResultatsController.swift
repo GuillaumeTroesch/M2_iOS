@@ -47,22 +47,29 @@ class ResultatsController: UITableViewController {
         print(indexPath.row)
         let field = lieux[indexPath.row].fields
         // Configure the cell
-//        if let test = field.etablissement {
-            cell.etablissementCell?.text = field.etablissement
-//        }
-//        if let test = field.adresse {
-            cell.adresseCell?.text = field.adresse
-//        }
-        /*if let test = field.ville, let test2 = field.departement {
-            cell.villeEtDepartementCell?.text = lieux[indexPath.row].fields.ville ?? "" + " " + lieux[indexPath.row].fields.departement ?? ""
-        }*/
+        cell.etablissementCell?.text = field.etablissement
+        cell.adresseCell?.text = field.adresse
+        let tmp = field.ville + " - " + field.departement
+        cell.villeEtDepartementCell?.text = tmp
+        
         cell.handicapAuditif?.isHidden = true
         cell.handicapVisual?.isHidden = true
         cell.handicapMoteur?.isHidden = true
         cell.handicapMental?.isHidden = true
-        /*for handicap in optionHandicaps {
-            
-        }*/
+        for handicap in optionHandicaps {
+            switch handicap {
+            case Constant.handicap_auditif:
+                cell.handicapAuditif?.isHidden = false
+            case Constant.handicap_visuel:
+                cell.handicapVisual?.isHidden = false
+            case Constant.handicap_moteur:
+                cell.handicapMoteur?.isHidden = false
+            case Constant.handicap_mental:
+                cell.handicapMental?.isHidden = false
+            default:
+                break
+            }
+        }
 
         return cell
     }
