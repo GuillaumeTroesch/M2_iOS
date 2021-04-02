@@ -175,7 +175,6 @@
                     <navigationItem key="navigationItem" title="Accueil" id="StT-Zf-1Us"/>
                     <connections>
                         <outlet property="pickerDepartement" destination="Etg-7d-eBY" id="55j-m8-0pg"/>
-                        <outlet property="switchMental" destination="oBu-AG-8uN" id="oOF-hP-Xbo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
