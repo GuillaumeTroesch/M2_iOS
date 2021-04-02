@@ -42,10 +42,10 @@ class ResultatsController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "prototype1", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "prototype1", for: indexPath) as! TableViewCell
 
         // Configure the cell
-        
+        cell.etablissementCell?.text = lieux[indexPath.row].fields.etablissement
 //        cell.textLabel?.text = "Titre"
 
         return cell

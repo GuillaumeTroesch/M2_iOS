@@ -190,7 +190,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="prototype1" rowHeight="120" id="aBl-Lk-Pzc">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="prototype1" rowHeight="120" id="aBl-Lk-Pzc" customClass="TableViewCell" customModule="handiPlaces" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aBl-Lk-Pzc" id="OUW-zI-dG1">
@@ -260,6 +260,15 @@
                                         <constraint firstItem="A7l-pv-ge3" firstAttribute="trailing" secondItem="OUW-zI-dG1" secondAttribute="trailingMargin" id="liF-3g-dWU"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="adresseCell" destination="veH-UT-Nng" id="Kzh-Hg-xXN"/>
+                                    <outlet property="etablissementCell" destination="4S1-ZS-Xze" id="D0o-xm-nqW"/>
+                                    <outlet property="handicapAuditif" destination="n21-gt-OcT" id="BBY-8i-Ycy"/>
+                                    <outlet property="handicapMental" destination="2FC-IC-w5X" id="EmZ-Jd-5cF"/>
+                                    <outlet property="handicapMoteur" destination="TCr-Ny-iaF" id="C9V-9l-FFQ"/>
+                                    <outlet property="handicapVisual" destination="Dmo-Cu-rni" id="JST-15-b1k"/>
+                                    <outlet property="villeEtDepartementCell" destination="2ui-Na-CAw" id="T0A-aZ-yzN"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
