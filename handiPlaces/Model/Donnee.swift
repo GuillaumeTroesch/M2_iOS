@@ -40,7 +40,13 @@ struct Field : Decodable {
     var handicap_visuel : String
     var handicap_auditif : String
     var adresse : String?
+    
+    var activit : String?
+    var siteweb : String?
+    var geo : [Float]?
 }
+
+
 
 struct Record : Decodable {
     var recordid : String
@@ -50,5 +56,10 @@ struct Record : Decodable {
 struct Donnee : Decodable {
     var nhits : Int
     var facet_groups : [FacetGroups]
+    var records : [Record]
+}
+
+struct DonneePlace : Decodable {
+    var nhits : Int
     var records : [Record]
 }

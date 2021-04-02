@@ -409,7 +409,16 @@
                     </view>
                     <navigationItem key="navigationItem" title="Lieu" id="FDP-JQ-RA6"/>
                     <connections>
+                        <outlet property="activite" destination="J2s-Qy-jEl" id="Zc4-BY-I5W"/>
+                        <outlet property="adresse" destination="0Ul-KQ-dqA" id="JjU-4h-Z53"/>
                         <outlet property="btnAddFav" destination="5kt-ch-vAJ" id="0h9-4b-z9u"/>
+                        <outlet property="departement" destination="0cU-1P-707" id="nFb-oI-Rqp"/>
+                        <outlet property="handicapAuditif" destination="KFX-Mw-wwd" id="DEg-48-Hhh"/>
+                        <outlet property="handicapMental" destination="0I4-Xi-QHf" id="Iyq-95-79r"/>
+                        <outlet property="handicapMoteur" destination="EYk-qy-TZT" id="lpG-kk-nLk"/>
+                        <outlet property="handicapVisuel" destination="PR4-mv-8wV" id="GT1-wR-uwC"/>
+                        <outlet property="nom" destination="W32-pQ-RQq" id="KUz-XV-Cdx"/>
+                        <outlet property="ville" destination="00d-RZ-Qmh" id="Goi-Xz-07X"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ttP-vi-UOb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
