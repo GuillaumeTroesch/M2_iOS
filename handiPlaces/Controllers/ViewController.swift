@@ -113,6 +113,9 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         if handicapAuditif {
             handicapsSelected.append("\(Constant.handicap_auditif)")
         }
+        for handicap in handicapsSelected {
+            print(handicap)
+        }
 
         DvC.optionDepartement = departementSelected
         DvC.optionHandicaps = handicapsSelected
